@@ -147,78 +147,19 @@
     <!-- ==========================================
          SECTION 1: HERO SECTION
          ========================================== -->
-    <section
+    <!-- ==========================================
+     SECTION 1: HERO SECTION
+     ========================================== -->
+<section
   id="hero"
   class="relative w-full min-h-screen flex items-center justify-center
          pt-10 pb-[80px] px-4 bg-[#f7eee4] overflow-hidden"
 >
   <!-- Background -->
   <div class="absolute inset-0 bg-[#f7eee4] -z-20 pointer-events-none"></div>
+
   <div class="absolute inset-0 premium-sparkle -z-10 pointer-events-none"></div>
 
-
-  <!-- ==========================================
-     TOP RIGHT FLORAL
-     ========================================== -->
-<div
-  class="absolute
-         -top-[30px] -right-[85px]
-         sm:-top-[40px] sm:-right-[40px]
-         md:-top-[75px] md:-right-[70px]
-         lg:-top-[80px] lg:-right-[80px]
-         w-[300px]
-         sm:w-[180px]
-         md:w-[300px]
-         lg:w-[300px]
-         z-20
-         pointer-events-none
-         transform rotate-[35deg]"
->
-  <div
-    class="pointer-events-none select-none
-           overflow-visible w-full h-auto floral-glow"
-    aria-hidden="true"
-  >
-    <img
-      src="./images/Flower01.png"
-      alt="Floral ornament"
-      class="w-full h-full object-contain animate-floral-breeze-1"
-      onerror="this.src='/images/Flower01.png'"
-    >
-  </div>
-</div>
-
-
-<!-- ==========================================
-     BOTTOM LEFT FLORAL
-     ========================================== -->
-<div
-  class="absolute
-         bottom-[60px] -left-[40px]
-         sm:-bottom-[55px] sm:-left-[55px]
-         md:-bottom-[65px] md:-left-[70px]
-         lg:-bottom-[80px] lg:-left-[80px]
-         w-[200px]
-         sm:w-[200px]
-         md:w-[250px]
-         lg:w-[290px]
-         z-20
-         pointer-events-none
-         transform rotate-[-50deg]"
->
-  <div
-    class="pointer-events-none select-none
-           overflow-visible w-full h-auto floral-glow"
-    aria-hidden="true"
-  >
-    <img
-      src="./images/Flower02.png"
-      alt="Floral ornament"
-      class="w-full h-full object-contain animate-floral-breeze-2"
-      onerror="this.src='/images/Flower02.png'"
-    >
-  </div>
-</div>
 
   <!-- ==========================================
        MAIN PILL / ARCH CARD
@@ -239,11 +180,80 @@
            shadow-[0_25px_60px_rgba(0,0,0,0.55)]
            border-2 border-[#c99646]
            flex flex-col items-center text-center
-           overflow-hidden
+           overflow-visible
            z-10 premium-card"
   >
 
-    <!-- Inner Gold Inset Arch Border -->
+
+    <!-- ==========================================
+         TOP RIGHT FLORAL
+         Positioned relative to the PILL
+         ========================================== -->
+    <div
+      class="absolute
+             -top-[100px] -right-[60px]
+             sm:-top-[25px] sm:-right-[55px]
+             md:-top-[35px] md:-right-[65px]
+             lg:-top-[45px] lg:-right-[70px]
+             w-[250px]
+             sm:w-[210px]
+             md:w-[250px]
+             lg:w-[280px]
+             z-30
+             pointer-events-none
+             rotate-[35deg]"
+    >
+      <div
+        class="pointer-events-none select-none
+               overflow-visible w-full h-auto floral-glow"
+        aria-hidden="true"
+      >
+        <img
+          src="./images/Flower01.png"
+          alt="Floral ornament"
+          class="w-full h-auto object-contain animate-floral-breeze-1"
+          onerror="this.src='/images/Flower01.png'"
+        >
+      </div>
+    </div>
+
+
+    <!-- ==========================================
+         BOTTOM LEFT FLORAL
+         Positioned relative to the PILL
+         ========================================== -->
+    <div
+      class="absolute
+             -bottom-[90px] -left-[85px]
+             sm:-bottom-[25px] sm:-left-[55px]
+             md:-bottom-[35px] md:-left-[65px]
+             lg:-bottom-[45px] lg:-left-[75px]
+             w-[250px]
+             sm:w-[210px]
+             md:w-[250px]
+             lg:w-[280px]
+             z-30
+             pointer-events-none
+             rotate-[-50deg]"
+    >
+      <div
+        class="pointer-events-none select-none
+               overflow-visible w-full h-auto floral-glow"
+        aria-hidden="true"
+      >
+        <img
+          src="./images/Flower02.png"
+          alt="Floral ornament"
+          class="w-full h-auto object-contain animate-floral-breeze-2"
+          onerror="this.src='/images/Flower02.png'"
+        >
+      </div>
+    </div>
+
+
+    <!-- ==========================================
+         INNER GOLD INSET ARCH BORDER
+         ========================================== -->
     <div
       class="absolute inset-2.5
              rounded-[172px] sm:rounded-[212px]
@@ -259,7 +269,9 @@
     ></div>
 
 
-    <!-- Eyebrow -->
+    <!-- ==========================================
+         EYEBROW
+         ========================================== -->
     <div class="relative z-10 mb-4">
       <p
         class="font-cormorant
@@ -274,7 +286,9 @@
     </div>
 
 
-    <!-- Portrait -->
+    <!-- ==========================================
+         PORTRAIT
+         ========================================== -->
     <div
       class="relative z-10
              w-40 h-56
@@ -306,7 +320,9 @@
     </div>
 
 
-    <!-- Couple Names -->
+    <!-- ==========================================
+         COUPLE NAMES
+         ========================================== -->
     <div class="relative z-10 mb-3 px-2">
       <h1
         class="font-lavish
@@ -324,7 +340,9 @@
     </div>
 
 
-    <!-- Date -->
+    <!-- ==========================================
+         DATE
+         ========================================== -->
     <div class="relative z-10 mb-4">
       <p
         class="font-cormorant
@@ -340,7 +358,9 @@
     </div>
 
 
-    <!-- Venue -->
+    <!-- ==========================================
+         VENUE
+         ========================================== -->
     <div class="relative z-10 max-w-[280px]">
       <p
         class="font-montserrat
@@ -370,12 +390,17 @@
 
   </div>
 
-</section>
 
+
+</section>
 
     <!-- ==========================================
          SECTION 2: SAVE THE DATE & COUNTDOWN
          ========================================== -->
+
+
+
+
 
 <div class="absolute top-0 -left-14 w-48 sm:w-56 z-0 pointer-events-none transform -rotate-12 opacity-30">
         <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
@@ -385,6 +410,15 @@
 
 
     <section id="date" class="relative w-full flex flex-col items-center justify-center py-12 px-4 bg-[#f7eee4]">
+
+
+<div class="absolute -top-10 -left-14 w-48 sm:w-56 z-0 pointer-events-none transform -rotate-12 opacity-30">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower03.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower03.png'">
+        </div>
+      </div>
+
+
       <!-- Top Right Floral Bouquet -->
       <div class="absolute -top-20 -right-[100px] w-56 sm:w-72 z-0 pointer-events-none transform rotate-[90deg]">
         <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
