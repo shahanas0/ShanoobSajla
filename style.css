@@ -1,9 +1,12 @@
 /* ==========================================================================
    Shanoob & Sajla Wedding Invitation - Exact Design Stylesheet
+
    Matches 100% the React & Tailwind Design System
+
    ========================================================================== */
 
 /* Custom Font Utilities */
+
 .font-lavish {
   font-family: 'Lavishly Yours', cursive;
 }
@@ -28,6 +31,11 @@
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+
+/* ==========================================================================
+   FLORAL ANIMATIONS
+   ========================================================================== */
+
 @keyframes floralBreeze1 {
 
   0%, 100% {
@@ -35,11 +43,11 @@
   }
 
   33% {
-    transform: rotate(4deg) translate(6px, -6px) scale(1.035);
+    transform: rotate(5deg) translate(8px, -8px) scale(1.04);
   }
 
   66% {
-    transform: rotate(-3.2deg) translate(-6px, 4px) scale(0.98);
+    transform: rotate(-4deg) translate(-8px, 5px) scale(0.975);
   }
 
 }
@@ -51,11 +59,11 @@
   }
 
   40% {
-    transform: rotate(-4.2deg) translate(-6px, -5px) scale(1.04);
+    transform: rotate(-5.2deg) translate(-8px, -7px) scale(1.045);
   }
 
   75% {
-    transform: rotate(3.2deg) translate(6px, 4px) scale(0.98);
+    transform: rotate(4deg) translate(8px, 5px) scale(0.975);
   }
 
 }
@@ -72,86 +80,101 @@
   will-change: transform;
 }
 
-/* @keyframes goldGlow {
-  0%, 100% {
-    opacity: 0.85;
-    filter: drop-shadow(0 0 4px rgba(244, 216, 143, 0.4));
-  }
-  50% {
-    opacity: 1;
-    filter: drop-shadow(0 0 10px rgba(244, 216, 143, 0.7));
-  }
-}
-
-.animate-gold-glow {
-  animation: goldGlow 4s ease-in-out infinite;
-} */
 
 /* ==========================================================================
-   PREMIUM ENHANCEMENTS — bolder, more visible florals + luxe finish
+   PREMIUM ENHANCEMENTS
    ========================================================================== */
 
-/* Make every floral ornament read at full strength and sit with real
-   depth against both the ivory and the maroon backgrounds, instead of
-   fading into the background at low opacity. */
+/*
+   Floral effects cleaned:
+   - No drop shadows
+   - No gold glow
+   - No brightness filter
+   - No contrast filter
+   - No saturation filter
+
+   Flower animation and positioning remain unchanged.
+*/
+
 .floral-glow {
   opacity: 1;
-  filter: drop-shadow(0 6px 14px rgba(59, 0, 3, 0.28))
-          drop-shadow(0 0 22px rgba(244, 216, 143, 0.18))
-          saturate(1.08)
-          contrast(1.04);
+  filter: none;
 }
 
-/* Slightly stronger glow when a floral sits directly on the deep maroon
-   cards, so it doesn't get lost against the dark background. */
+
+/* Remove any pseudo-element glow */
+
+.floral-glow::before {
+  content: none;
+}
+
+
+/* Ensure flowers remain completely clean */
+
 #couple .floral-glow,
 #gallery .floral-glow,
-#welcome .floral-glow {
-  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5))
-          drop-shadow(0 0 26px rgba(244, 216, 143, 0.35))
-          saturate(1.12)
-          contrast(1.06)
-          brightness(1.03);
-}
-
-/* Extra prominence for the very first flower the visitor sees, at the
-   top of the hero section. */
+#welcome .floral-glow,
 #hero .floral-glow {
-  filter: drop-shadow(0 8px 20px rgba(59, 0, 3, 0.35))
-          drop-shadow(0 0 30px rgba(244, 216, 143, 0.4))
-          saturate(1.15)
-          contrast(1.08)
-          brightness(1.04);
+  filter: none;
+  opacity: 1;
 }
 
-/* A faint gold flare behind each floral cluster to lift it further off
-   the page, without adding any new markup. */
-.floral-glow::before {
-  content: '';
-}
 
-/* Fine gold-fleck sparkle texture used behind hero / couple cards for a
-   subtle premium shimmer (kept very light so it never competes with the
-   florals or type). */
+/* ==========================================================================
+   PREMIUM SPARKLE
+   ========================================================================== */
+
+/*
+   Kept unchanged.
+   This is NOT a flower shadow/glow.
+*/
+
 .premium-sparkle {
   background-image:
-    radial-gradient(circle, rgba(244, 216, 143, 0.55) 0.5px, transparent 0.5px),
-    radial-gradient(circle, rgba(244, 216, 143, 0.35) 0.5px, transparent 0.5px);
+    radial-gradient(
+      circle,
+      rgba(244, 216, 143, 0.55) 0.5px,
+      transparent 0.5px
+    ),
+    radial-gradient(
+      circle,
+      rgba(244, 216, 143, 0.35) 0.5px,
+      transparent 0.5px
+    );
+
   background-size: 46px 46px, 68px 68px;
-  background-position: 0 0, 24px 30px;
+
+  background-position:
+    0 0,
+    24px 30px;
+
   animation: sparkleDrift 14s linear infinite;
 }
 
 @keyframes sparkleDrift {
-  0% { background-position: 0 0, 24px 30px; }
-  100% { background-position: 46px 46px, 92px 98px; }
+
+  0% {
+    background-position:
+      0 0,
+      24px 30px;
+  }
+
+  100% {
+    background-position:
+      46px 46px,
+      92px 98px;
+  }
+
 }
 
-/* Premium card treatment: soft outer glow + faint inner gold hairline so
-   every maroon/ivory panel reads as foil-stamped stationery rather than
-   a flat div. Applied via the .premium-card class added to each card. */
+
+/* ==========================================================================
+   PREMIUM CARD TREATMENT
+   ========================================================================== */
+
 .premium-card {
   position: relative;
+
   box-shadow:
     0 25px 60px rgba(0, 0, 0, 0.45),
     0 0 0 1px rgba(244, 216, 143, 0.08),
@@ -160,28 +183,87 @@
 
 .premium-card::after {
   content: '';
+
   position: absolute;
   inset: 0;
+
   border-radius: inherit;
+
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(244, 216, 143, 0.10) 0%, transparent 30%, transparent 70%, rgba(244, 216, 143, 0.06) 100%);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(244, 216, 143, 0.10) 0%,
+      transparent 30%,
+      transparent 70%,
+      rgba(244, 216, 143, 0.06) 100%
+    );
+
   mix-blend-mode: overlay;
 }
 
-/* Hide scrollbars */
+
+/* ==========================================================================
+   HIDE SCROLLBARS
+   ========================================================================== */
+
 html,
 body {
+
   background-color: #f7eee4;
+
   color: #3b0003;
+
   font-family: 'Montserrat', sans-serif;
+
   overflow-x: clip;
+
   scrollbar-width: none;
+
   -ms-overflow-style: none;
 }
 
 ::-webkit-scrollbar {
+
   display: none;
+
   width: 0;
+
   height: 0;
 }
 
+
+
+
+/* ============================================================
+   REMOVE ALL SHADOWS — NOTHING ELSE IS CHANGED
+   ============================================================ */
+
+/* Box shadows from cards, pills, containers, images, etc. */
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+}
+
+/* Text shadows, if any */
+*,
+*::before,
+*::after {
+  text-shadow: none !important;
+}
+
+/* Remove flower drop-shadow effects only */
+.floral-glow,
+#hero .floral-glow,
+#couple .floral-glow,
+#gallery .floral-glow,
+#welcome .floral-glow {
+  filter: none !important;
+}
+
+/* Remove Tailwind drop-shadow utilities */
+[class*="drop-shadow"] {
+  filter: none !important;
+}
