@@ -1,453 +1,874 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a386f07aac.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Parisienne&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>The Wedding of Shanoob &amp; Sajla | 27.09.2026</title>
+  <meta name="description" content="Wedding invitation for Shanoob &amp; Sajla on September 27, 2026 at N Woods Convention Centre, Hospital Junction, Nechully." />
+  
+  <!-- Google Fonts: Cormorant Garamond, Great Vibes, Lavishly Yours, Montserrat, Parisienne, Playfair Display, Shadows Into Light -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Lavishly+Yours&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Parisienne&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN with identical config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+            lavish: ['"Lavishly Yours"', 'cursive'],
+            shadows: ['"Shadows Into Light"', 'cursive'],
+            parisienne: ['Parisienne', 'cursive'],
+            greatvibes: ['"Great Vibes"', 'cursive'],
+          },
+          colors: {
+            maroon: {
+              900: '#220002',
+              800: '#300003',
+              700: '#3b0003',
+              600: '#460104',
+              500: '#520206',
+            },
+            gold: {
+              100: '#fff7e6',
+              200: '#fae9c4',
+              300: '#f4d88f',
+              400: '#e8ca7f',
+              500: '#c99646',
+              600: '#b88533',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-
-    <title>Sajla_Shanoob</title>
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#f7eee4] text-[#3b0003] antialiased selection:bg-[#650000] selection:text-[#f2d47f] min-h-screen relative overflow-x-clip">
 
-<div class="footer_navbar">
-        <div class="left">
-            <a href="#gallery" title="Gallery"><i class="fa-solid fa-image"></i></a>
-            <a href="#location" title="Venue"><i class="fa-solid fa-location-crosshairs"></i></a>
-        </div>
-        <a href="index.html" class="home" title="Home"><i class="fa-solid fa-house-chimney"></i></a>
-        <div class="right">
-            <a href="#date" title="Date"><i class="fa-solid fa-calendar"></i></a>
-            <a href="#couple" title="RSVP"><i class="fa-solid fa-user"></i></a>
-        </div>
+  <!-- Fixed Floating Controls Island (Top Right) -->
+  <aside class="fixed top-5 right-4 sm:right-[max(1rem,calc(50%-238px))] z-[99999] flex flex-col items-end gap-2.5 select-none pointer-events-auto" aria-label="Floating Controls">
+    <!-- Sound Toggle Button -->
+    <button
+      id="btn-music-toggle"
+      class="group relative flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-b from-[#3b0003] via-[#2a0002] to-[#140001] border-2 border-[#f4d88f] text-[#f4d88f] shadow-[0_6px_20px_rgba(0,0,0,0.7)] hover:scale-105 active:scale-95 transition-all duration-200"
+      title="Play Ambient Music"
+      aria-label="Play Ambient Music"
+    >
+      <span id="music-pulse-ring" class="absolute inset-0 rounded-full border border-[#f4d88f]/80 animate-ping pointer-events-none" style="display: none;"></span>
+      <!-- Playing Icon -->
+      <svg id="music-icon-playing" class="w-5 h-5 text-[#f4d88f] animate-pulse" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+      </svg>
+      <!-- Muted Icon -->
+      <svg id="music-icon-muted" class="w-5 h-5 text-[#f4d88f]/85" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" y1="9" x2="17" y2="15"></line>
+        <line x1="17" y1="9" x2="23" y2="15"></line>
+      </svg>
+    </button>
+
+    <!-- Navigation Menu Toggle Button -->
+    <button
+      id="btn-home-circle"
+      class="group relative flex items-center justify-center w-11 h-11 rounded-full bg-gradient-to-b from-[#3b0003] via-[#2a0002] to-[#140001] border-2 border-[#f4d88f] text-[#f4d88f] shadow-[0_6px_20px_rgba(0,0,0,0.7)] hover:scale-105 active:scale-95 transition-all duration-200"
+      title="Toggle Navigation Menu"
+      aria-label="Toggle Navigation Menu"
+    >
+      <svg id="nav-icon-home" class="w-5 h-5 text-[#f4d88f] group-hover:scale-110 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <svg id="nav-icon-close" class="w-5 h-5 text-[#f4d88f] transition-transform duration-200" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Speed Dial Stack -->
+    <div id="floating-nav-stack" class="hidden flex-col items-end gap-2 animate-in fade-in slide-in-from-top-3 duration-200 mt-1">
+      <div class="flex items-center gap-2 group">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 px-3 py-1 rounded-md bg-[#180002]/98 border border-[#f4d88f]/70 text-[#fae9c4] text-[10px] font-montserrat uppercase tracking-wider shadow-2xl pointer-events-none whitespace-nowrap">Home</span>
+        <button class="nav-sub-btn flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-xl hover:scale-110 active:scale-95 bg-[#5a0005] border-2 border-[#f4d88f] text-[#fff6de]" data-target="hero" aria-label="Scroll to Home">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 group">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 px-3 py-1 rounded-md bg-[#180002]/98 border border-[#f4d88f]/70 text-[#fae9c4] text-[10px] font-montserrat uppercase tracking-wider shadow-2xl pointer-events-none whitespace-nowrap">Save The Date</span>
+        <button class="nav-sub-btn flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-xl hover:scale-110 active:scale-95 bg-gradient-to-b from-[#300003] to-[#140002] border border-[#f4d88f]/80 text-[#f4d88f] hover:bg-[#5a0005]" data-target="date" aria-label="Scroll to Save The Date">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 group">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 px-3 py-1 rounded-md bg-[#180002]/98 border border-[#f4d88f]/70 text-[#fae9c4] text-[10px] font-montserrat uppercase tracking-wider shadow-2xl pointer-events-none whitespace-nowrap">Couple Details</span>
+        <button class="nav-sub-btn flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-xl hover:scale-110 active:scale-95 bg-gradient-to-b from-[#300003] to-[#140002] border border-[#f4d88f]/80 text-[#f4d88f] hover:bg-[#5a0005]" data-target="couple" aria-label="Scroll to Couple Details">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 group">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 px-3 py-1 rounded-md bg-[#180002]/98 border border-[#f4d88f]/70 text-[#fae9c4] text-[10px] font-montserrat uppercase tracking-wider shadow-2xl pointer-events-none whitespace-nowrap">Venue &amp; Map</span>
+        <button class="nav-sub-btn flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-xl hover:scale-110 active:scale-95 bg-gradient-to-b from-[#300003] to-[#140002] border border-[#f4d88f]/80 text-[#f4d88f] hover:bg-[#5a0005]" data-target="location" aria-label="Scroll to Venue &amp; Map">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 group">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 px-3 py-1 rounded-md bg-[#180002]/98 border border-[#f4d88f]/70 text-[#fae9c4] text-[10px] font-montserrat uppercase tracking-wider shadow-2xl pointer-events-none whitespace-nowrap">Moments Gallery</span>
+        <button class="nav-sub-btn flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-xl hover:scale-110 active:scale-95 bg-gradient-to-b from-[#300003] to-[#140002] border border-[#f4d88f]/80 text-[#f4d88f] hover:bg-[#5a0005]" data-target="gallery" aria-label="Scroll to Moments Gallery">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2 group">
+        <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-150 px-3 py-1 rounded-md bg-[#180002]/98 border border-[#f4d88f]/70 text-[#fae9c4] text-[10px] font-montserrat uppercase tracking-wider shadow-2xl pointer-events-none whitespace-nowrap">Thank You</span>
+        <button class="nav-sub-btn flex items-center justify-center w-10 h-10 rounded-full transition-all shadow-xl hover:scale-110 active:scale-95 bg-gradient-to-b from-[#300003] to-[#140002] border border-[#f4d88f]/80 text-[#f4d88f] hover:bg-[#5a0005]" data-target="welcome" aria-label="Scroll to Thank You">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Backdrop for menu -->
+  <div id="nav-backdrop-overlay" class="fixed inset-0 z-[99990] bg-black/40 backdrop-blur-xs hidden" aria-hidden="true"></div>
+
+  <!-- Centered App Container -->
+  <main class="w-full max-w-[500px] mx-auto min-h-screen bg-[#f7eee4] shadow-2xl relative">
+
+    <!-- ==========================================
+         SECTION 1: HERO SECTION
+         ========================================== -->
+    <section
+  id="hero"
+  class="relative w-full min-h-screen flex items-center justify-center
+         pt-10 pb-[80px] px-4 bg-[#f7eee4] overflow-hidden"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 bg-[#f7eee4] -z-20 pointer-events-none"></div>
+  <div class="absolute inset-0 premium-sparkle -z-10 pointer-events-none"></div>
+
+
+  <!-- ==========================================
+     TOP RIGHT FLORAL
+     ========================================== -->
+<div
+  class="absolute
+         -top-[60px] -right-[75px]
+         sm:-top-[40px] sm:-right-[40px]
+         md:-top-[75px] md:-right-[70px]
+         lg:-top-[80px] lg:-right-[80px]
+         w-[250px]
+         sm:w-[180px]
+         md:w-[300px]
+         lg:w-[300px]
+         z-20
+         pointer-events-none
+         transform rotate-[45deg]"
+>
+  <div
+    class="pointer-events-none select-none
+           overflow-visible w-full h-auto floral-glow"
+    aria-hidden="true"
+  >
+    <img
+      src="./images/Flower01.png"
+      alt="Floral ornament"
+      class="w-full h-full object-contain animate-floral-breeze-1"
+      onerror="this.src='/images/Flower01.png'"
+    >
+  </div>
+</div>
+
+
+<!-- ==========================================
+     BOTTOM LEFT FLORAL
+     ========================================== -->
+<div
+  class="absolute
+         bottom-[20px] -left-[35px]
+         sm:-bottom-[55px] sm:-left-[55px]
+         md:-bottom-[65px] md:-left-[70px]
+         lg:-bottom-[80px] lg:-left-[80px]
+         w-[170px]
+         sm:w-[200px]
+         md:w-[250px]
+         lg:w-[290px]
+         z-20
+         pointer-events-none
+         transform rotate-[-50deg]"
+>
+  <div
+    class="pointer-events-none select-none
+           overflow-visible w-full h-auto floral-glow"
+    aria-hidden="true"
+  >
+    <img
+      src="./images/Flower02.png"
+      alt="Floral ornament"
+      class="w-full h-full object-contain animate-floral-breeze-2"
+      onerror="this.src='/images/Flower02.png'"
+    >
+  </div>
+</div>
+
+  <!-- ==========================================
+       MAIN PILL / ARCH CARD
+       ========================================== -->
+  <div
+    id="hero-card"
+    class="relative
+           w-[min(100%,420px)]
+           bg-gradient-to-b
+           from-[#3b0003]
+           via-[#300003]
+           to-[#200002]
+           text-[#f4d88f]
+           rounded-[180px]
+           sm:rounded-[220px]
+           py-14
+           px-6 sm:px-8
+           shadow-[0_25px_60px_rgba(0,0,0,0.55)]
+           border-2 border-[#c99646]
+           flex flex-col items-center text-center
+           overflow-hidden
+           z-10 premium-card"
+  >
+
+    <!-- Inner Gold Inset Arch Border -->
+    <div
+      class="absolute inset-2.5
+             rounded-[172px] sm:rounded-[212px]
+             border border-[#f4d88f]/40
+             pointer-events-none"
+    ></div>
+
+    <div
+      class="absolute inset-[6px]
+             rounded-[168px] sm:rounded-[208px]
+             border border-[#f4d88f]/15
+             pointer-events-none"
+    ></div>
+
+
+    <!-- Eyebrow -->
+    <div class="relative z-10 mb-4">
+      <p
+        class="font-cormorant
+               text-xs sm:text-sm
+               font-semibold
+               tracking-[4px]
+               uppercase
+               text-[#f4d88f]/90"
+      >
+        THE WEDDING OF
+      </p>
     </div>
 
 
-    <section class="first">
-        <div class="weddingof">
-            <img src="flower.png" class="rightimg" alt="">
-            <img src="flower1.png" class="leftimg" alt="">
-            <div class="wedding-image">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRZi8h6HBx5zvYptyl1G5stJjMvgidYJ3MUhE8jdKYJipne31CAZ_3stRK&s=10" alt="">
-            </div>
-            <div class="wedding-text">
-                <h2 class="eyebrow">the wedding of</h2>
-                <h1>Shanoob &amp; Sajla</h1>
-                <br>
-                <h3>27 . 09 . 2026</h3>
-                <br>
-                <p>NWoods Convention Centre, <br>Pallikunnu</p>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section class="date" id="date">
-        <div class="date-inner">
-            <div class="date-text">
-                <h2>the wedding of</h2>
-                <h1>Shanoob &amp; Sajla</h1>
-                <br>
-                <div class="countdown" id="countdown">
-                    <div>
-                        <h3 id="cd-days">00</h3>
-                        <p>Days</p>
-                    </div>
-                    <div>
-                        <h3 id="cd-hours">00</h3>
-                        <p>Hours</p>
-                    </div>
-                    <div>
-                        <h3 id="cd-mins">00</h3>
-                        <p>Mins</p>
-                    </div>
-                    <div>
-                        <h3 id="cd-secs">00</h3>
-                        <p>Secs</p>
-                    </div>
-                </div>
-                <br>
-                <p class="message">
-                    We are delighted to invite you to celebrate our special day with us.
-                    Your presence will make our wedding more memorable.
-                </p>
-            </div>
-            <div class="date-portrait">
-                <img src="https://i.pinimg.com/736x/d8/57/1e/d8571e4be1e59946abfd1edf7b95ecb0.jpg" alt="">
-            </div>
-        </div>
-    </section>
-
-
-    <section class="person" id="couple">
-        <div class="leaves" aria-hidden="true">
-            <span class="leaf" style="left:3%;  width:20px; height:20px; animation-duration:13s; animation-delay:-2s;"></span>
-            <span class="leaf" style="left:10%; width:15px; height:15px; animation-duration:9s;  animation-delay:-6s;"></span>
-            <span class="leaf" style="left:18%; width:24px; height:24px; animation-duration:15s; animation-delay:-1s;"></span>
-            <span class="leaf" style="left:27%; width:17px; height:17px; animation-duration:11s; animation-delay:-8s;"></span>
-            <span class="leaf" style="left:35%; width:22px; height:22px; animation-duration:14s; animation-delay:-4s;"></span>
-            <span class="leaf" style="left:44%; width:16px; height:16px; animation-duration:10s; animation-delay:-9s;"></span>
-            <span class="leaf" style="left:53%; width:21px; height:21px; animation-duration:12s; animation-delay:-3s;"></span>
-            <span class="leaf" style="left:61%; width:18px; height:18px; animation-duration:16s; animation-delay:-7s;"></span>
-            <span class="leaf" style="left:69%; width:25px; height:25px; animation-duration:13s; animation-delay:-5s;"></span>
-            <span class="leaf" style="left:77%; width:15px; height:15px; animation-duration:9s;  animation-delay:-1s;"></span>
-            <span class="leaf" style="left:85%; width:20px; height:20px; animation-duration:14s; animation-delay:-10s;"></span>
-            <span class="leaf" style="left:92%; width:17px; height:17px; animation-duration:11s; animation-delay:-4s;"></span>
-            <span class="leaf" style="left:97%; width:23px; height:23px; animation-duration:15s; animation-delay:-6s;"></span>
-        </div>
-        <div class="person-inner">
-            <div class="person-topper">
-                <span class="topper-line"></span>
-                <h4>Together With Their Families</h4>
-                <span class="topper-line"></span>
-            </div>
-            <br>
-            <div class="GB">
-                <div class="groom">
-                    <div class="arch-frame">
-                        <img src="https://www.shaadidukaan.com/vogue/wp-content/uploads/2025/09/download-2025-09-10T132429.576.webp" alt="">
-                    </div>
-                    <div class="nameplate">
-                        <h5 class="role-label">Groom</h5>
-                        <h1>Shanoob</h1>
-                        <p>S/O MR. &amp; MRS.</p>
-                    </div>
-                </div>
-                <div class="knot">
-                    <span class="knot-line top"></span>
-                    <div class="knot-ring"><span>&amp;</span></div>
-                    <span class="knot-line bottom"></span>
-                </div>
-                <div class="bride">
-                    <div class="arch-frame">
-                        <img src="https://i.pinimg.com/474x/47/4e/f8/474ef8f2152dab6680f1c99a42d928d2.jpg" alt="">
-                    </div>
-                    <div class="nameplate">
-                        <h5 class="role-label">Bride</h5>
-                        <h1>Sajla</h1>
-                        <p>D/O MR. &amp; MRS.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section class="save" id="location">
-        <h1>Save The Date</h1>
-        <div class="save-content">
-            <!-- RIGHT: INVITATION-STYLE CARD -->
-            <div class="save-card-container">
-                <div class="card">
-                    <p class="month">SEPTEMBER</p>
-                    <div class="flip-date">
-                        <div class="flip-card">
-                            <span class="date-number current">27</span>
-                        </div>
-                    </div>
-                    <br>
-                    <p class="year">2026</p>
-                    <br><br>
-                    <p class="time">SUNDAY • 11:00 AM</p>
-                    <h1>
-                        NWOODS CONVENTION CENTER<br>
-                        PALLIKUNNU
-                    </h1>
-                    <a href="https://maps.app.goo.gl/ejhiYo4Dz1BEfgvN8"
-                    target="_blank"
-                    class="map-link">
-                        <i class="fa-solid fa-location-arrow"></i>
-                        View Location
-                    </a>
-                </div>
-            </div>
-            <!-- LEFT: LOCATION MAP -->
-            <div class="save-map">
-                <div class="map-arch">
-                    <img src="nwoods.jpeg" alt="">
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-
-
-    <section class="gallery" id="gallery">
-        <div class="gallery-glow center" aria-hidden="true"></div>
-        <div class="gallery-glow top-left" aria-hidden="true"></div>
-        <div class="gallery-glow bottom-right" aria-hidden="true"></div>
-        <div class="gallery-vignette" aria-hidden="true"></div>
-            <span></span><span></span><span></span>
-        </div>
-        <span class="gallery-ember" style="left:10%;  width:4px; height:4px; --drift:20px; animation-duration:9s;  animation-delay:-1s;"></span>
-        <span class="gallery-ember" style="left:22%;  width:3px; height:3px; --drift:-15px; animation-duration:12s; animation-delay:-4s;"></span>
-        <span class="gallery-ember" style="left:38%;  width:5px; height:5px; --drift:10px; animation-duration:10s; animation-delay:-7s;"></span>
-        <span class="gallery-ember" style="left:55%;  width:3px; height:3px; --drift:-20px; animation-duration:8s;  animation-delay:-2.5s;"></span>
-        <span class="gallery-ember" style="left:68%;  width:4px; height:4px; --drift:18px; animation-duration:11s; animation-delay:-5.5s;"></span>
-        <span class="gallery-ember" style="left:80%;  width:3px; height:3px; --drift:-12px; animation-duration:9.5s; animation-delay:-3.5s;"></span>
-        <span class="gallery-ember" style="left:92%;  width:4px; height:4px; --drift:14px; animation-duration:13s; animation-delay:-6s;"></span>
-        <div class="gallery-heading">
-            <p class="gallery-eyebrow">A Few Moments</p>
-            <!-- <h1>Best Memories</h1> -->
-            <p class="gallery-subtitle">Little glimpses from our journey together, before the big day.</p>
-        </div>
-        <div class="gallery-frame">
-            <div class="polaroid-window" id="polaroidWindow">
-                <div class="photo-track">
-
-                    <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Pre-Wedding">
-                        <p>Pre-Wedding</p>
-                    </div>
-
-                    <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Golden Sunset">
-                        <p>Golden Sunset</p>
-                    </div>
-
-                    <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Together Forever">
-                        <p>Together Forever</p>
-                    </div>
-
-                    <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80" alt="Wedding Day">
-                        <p>Wedding Day</p>
-                    </div>
-
-                    <div class="photo">
-                        <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80" alt="Haldi Ritual">
-                        <p>Haldi Ritual</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="gallery-next">
-            <button onclick="scrollGallery(-300)"><i class="fa-solid fa-arrow-left"></i> PREV</button>
-            <button onclick="scrollGallery(300)">NEXT <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-    </section>
-
-    
-
-
-    <section class="welcome">
-    <div class="welcome-glow" aria-hidden="true"></div>
-    <div class="welcome-vignette" aria-hidden="true"></div>
-    <img src="flower.png" class="flower5-secondary" alt="" aria-hidden="true">
-    <img src="flower.png" class="flower5" alt="" aria-hidden="true">
-
-    <div class="welcomepart">
-        <p class="welcome-label">WITH LOVE &amp; GRATITUDE</p>
-        <h1>
-            Shanoob
-            <br>&amp;<br>
-            Sajla
-        </h1>
-        <br>
-        <p class="welcome-text">
-            We are delighted to welcome you to our special moments.
-            Your presence, love, and blessings will make our celebration
-            even more meaningful.
-        </p>
-        <p class="welcome-date">
-            27 . 09 . 2026
-        </p>
+    <!-- Portrait -->
+    <div
+      class="relative z-10
+             w-40 h-56
+             xs:w-44 xs:h-60
+             sm:w-48 sm:h-64
+             rounded-[90px] sm:rounded-[100px]
+             p-2
+             border border-[#f4d88f]/80
+             shadow-xl
+             mb-6
+             bg-transparent"
+    >
+      <div
+        class="w-full h-full
+               rounded-[82px] sm:rounded-[92px]
+               overflow-hidden
+               bg-[#180002]"
+      >
+        <img
+          src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80"
+          alt="Shanoob & Sajla"
+          class="w-full h-full
+                 object-cover object-center
+                 scale-105
+                 hover:scale-110
+                 transition-transform duration-700"
+        >
+      </div>
     </div>
-    <br><br>
-    <h2 class="thankyou">Thank You</h2>
+
+
+    <!-- Couple Names -->
+    <div class="relative z-10 mb-3 px-2">
+      <h1
+        class="font-lavish
+               text-3xl
+               xs:text-4xl
+               sm:text-5xl
+               md:text-[54px]
+               font-normal
+               leading-tight
+               text-[#f4d88f]
+               drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+      >
+        Shanoob &amp; Sajla
+      </h1>
+    </div>
+
+
+    <!-- Date -->
+    <div class="relative z-10 mb-4">
+      <p
+        class="font-cormorant
+               text-base
+               xs:text-lg
+               sm:text-xl
+               tracking-[3px] sm:tracking-[4px]
+               font-medium
+               text-[#f4d88f]"
+      >
+        27 . 09 . 2026
+      </p>
+    </div>
+
+
+    <!-- Venue -->
+    <div class="relative z-10 max-w-[280px]">
+      <p
+        class="font-montserrat
+               text-[10px]
+               xs:text-[11px]
+               sm:text-xs
+               tracking-wider
+               uppercase
+               font-semibold
+               leading-relaxed
+               text-[#fae9c4]"
+      >
+        N Woods Convention Centre
+      </p>
+
+      <p
+        class="font-montserrat
+               text-[9px]
+               xs:text-[10px]
+               tracking-wide
+               text-[#f4d88f]/80
+               mt-0.5"
+      >
+        Hospital Junction, Nechully
+      </p>
+    </div>
+
+  </div>
+
 </section>
 
 
+    <!-- ==========================================
+         SECTION 2: SAVE THE DATE & COUNTDOWN
+         ========================================== -->
+    <section id="date" class="relative w-full flex flex-col items-center justify-center py-12 px-4 bg-[#f7eee4]">
+      <!-- Top Right Floral Bouquet -->
+      <div class="absolute -top-20 -right-[100px] w-56 sm:w-72 z-0 pointer-events-none transform rotate-[90deg]">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower01.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower01.png'">
+        </div>
+      </div>
 
-<script>
-    const weddingDate = new Date("September 27, 2026 00:00:00").getTime();
+      <!-- Bottom Left Floral Bouquet -->
+      <div class="absolute -bottom-12 -left-12 w-56 sm:w-72 z-0 pointer-events-none transform -rotate-45 opacity-30">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower02.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower02.png'">
+        </div>
+      </div>
 
-    const countdown = setInterval(function () {
+      <!-- Inner Container -->
+      <div class="relative z-10 w-full max-w-[430px] flex flex-col items-center text-center">
+        <!-- Header Eyebrow -->
+        <h2 class="font-cormorant text-base sm:text-lg font-semibold tracking-[4px] uppercase text-[#3b0003] mb-4">
+          THE WEDDING OF
+        </h2>
 
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+        <!-- Pill Portrait Frame with side florals -->
+        <div class="relative mb-5">
+          <!-- Floral cluster on the left side of the portrait -->
+          <div class="absolute -left-16 top-1/4 w-32 sm:w-40 -z-10 pointer-events-none transform -rotate-6">
+            <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+              <img src="./images/Flower02.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower02.png'">
+            </div>
+          </div>
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const mins = Math.floor((distance / (1000 * 60)) % 60);
-        const secs = Math.floor((distance / 1000) % 60);
+          <div class="w-48 h-64 sm:w-52 sm:h-72 p-2 rounded-[96px] sm:rounded-[104px] border-2 border-[#b98e38] bg-transparent shadow-xl">
+            <div class="w-full h-full rounded-[88px] sm:rounded-[96px] overflow-hidden bg-[#3b0003]/10">
+              <img
+                src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+                alt="The Wedding of Shanoob &amp; Sajla"
+                class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </div>
+        </div>
 
-        document.getElementById("cd-days").innerHTML = days;
-        document.getElementById("cd-hours").innerHTML = String(hours).padStart(2, "0");
-        document.getElementById("cd-mins").innerHTML = String(mins).padStart(2, "0");
-        document.getElementById("cd-secs").innerHTML = String(secs).padStart(2, "0");
+        <!-- Names Calligraphy -->
+        <h1 class="font-lavish text-5xl sm:text-6xl text-[#3b0003] font-normal leading-tight mb-2">
+          Shanoob &amp; Sajla
+        </h1>
 
-        if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById("countdown").innerHTML = "<h3>Today is our Wedding Day! ❤️</h3>";
-        }
+        <!-- Date -->
+        <p class="font-cormorant text-lg sm:text-xl font-medium tracking-[3px] text-[#3b0003] mb-4">
+          27 . 09 . 2026
+        </p>
 
-    }, 1000);
+        <!-- Invitation Message -->
+        <p class="font-montserrat text-xs sm:text-[13px] text-[#3b0003]/90 leading-relaxed max-w-[360px] px-3 mb-6">
+          We are delighted to invite you to celebrate our special day with us. Your presence will
+          make our wedding more memorable.
+        </p>
 
+        <!-- Countdown Timer (4 Maroon Boxes) -->
+        <div id="countdown" class="flex items-center justify-center gap-2.5 sm:gap-3.5 mb-6">
+          <!-- Days -->
+          <div class="w-16 h-18 sm:w-20 sm:h-20 bg-gradient-to-b from-[#3b0003] to-[#250002] rounded-2xl border-2 border-[#f4d88f]/50 shadow-lg flex flex-col items-center justify-center text-white">
+            <span id="count-days" class="font-cormorant text-2xl sm:text-3xl font-semibold leading-none text-white drop-shadow">00</span>
+            <span class="font-montserrat text-[9px] sm:text-[10px] uppercase tracking-wider text-[#fae9c4] mt-1 font-medium">Days</span>
+          </div>
 
-const flipCard = document.querySelector(".flip-card");
+          <!-- Hours -->
+          <div class="w-16 h-18 sm:w-20 sm:h-20 bg-gradient-to-b from-[#3b0003] to-[#250002] rounded-2xl border-2 border-[#f4d88f]/50 shadow-lg flex flex-col items-center justify-center text-white">
+            <span id="count-hours" class="font-cormorant text-2xl sm:text-3xl font-semibold leading-none text-white drop-shadow">00</span>
+            <span class="font-montserrat text-[9px] sm:text-[10px] uppercase tracking-wider text-[#fae9c4] mt-1 font-medium">Hours</span>
+          </div>
 
-let currentNumber = 25;
-const finalNumber = 27;
-let dateAnimationStarted = false;
+          <!-- Mins -->
+          <div class="w-16 h-18 sm:w-20 sm:h-20 bg-gradient-to-b from-[#3b0003] to-[#250002] rounded-2xl border-2 border-[#f4d88f]/50 shadow-lg flex flex-col items-center justify-center text-white">
+            <span id="count-mins" class="font-cormorant text-2xl sm:text-3xl font-semibold leading-none text-white drop-shadow">00</span>
+            <span class="font-montserrat text-[9px] sm:text-[10px] uppercase tracking-wider text-[#fae9c4] mt-1 font-medium">Mins</span>
+          </div>
 
-const saveSection = document.querySelector(".save");
+          <!-- Secs -->
+          <div class="w-16 h-18 sm:w-20 sm:h-20 bg-gradient-to-b from-[#3b0003] to-[#250002] rounded-2xl border-2 border-[#f4d88f]/50 shadow-lg flex flex-col items-center justify-center text-white">
+            <span id="count-secs" class="font-cormorant text-2xl sm:text-3xl font-semibold leading-none text-[#f4d88f] drop-shadow">00</span>
+            <span class="font-montserrat text-[9px] sm:text-[10px] uppercase tracking-wider text-[#fae9c4] mt-1 font-medium">Secs</span>
+          </div>
+        </div>
 
-const dateObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting && !dateAnimationStarted) {
-            dateAnimationStarted = true;
-            setTimeout(() => {
-                changeDate();
-            }, 500);
-            dateObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
+        <!-- Save The Date Button -->
+        <div class="relative">
+          <button
+            id="btn-save-the-date"
+            class="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#3b0003] to-[#250002] text-[#fff6de] font-montserrat text-xs sm:text-sm font-medium tracking-wider rounded-xl border border-[#c99646] shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all"
+            aria-label="Save wedding date to your calendar"
+          >
+            <svg class="w-4 h-4 text-[#f4d88f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Save The Date</span>
+          </button>
 
-if (saveSection) {
-    dateObserver.observe(saveSection);
-}
-
-function changeDate() {
-
-    if (currentNumber >= finalNumber) {
-        return;
-    }
-
-    const nextNumber = currentNumber + 1;
-
-    // Create new number
-    const newNumber = document.createElement("div");
-
-    newNumber.className = "date-number";
-    newNumber.innerHTML = `<span>${nextNumber}</span>`;
-
-    flipCard.appendChild(newNumber);
-
-    // Animate old number upward
-    const oldNumber = flipCard.querySelector(".date-number.current");
-
-    if (oldNumber) {
-        oldNumber.classList.add("move-out");
-    }
-
-    // Start new number below
-    requestAnimationFrame(() => {
-        newNumber.classList.add("move-in");
-    });
-
-    setTimeout(() => {
-
-        if (oldNumber) {
-            oldNumber.remove();
-        }
-
-        newNumber.classList.remove("move-in");
-        newNumber.classList.add("current");
-
-        currentNumber = nextNumber;
-
-        if (currentNumber < finalNumber) {
-
-            setTimeout(() => {
-                changeDate();
-            }, 400);
-
-        }
-
-    }, 800);
-}
-
-
-
-const windowBox = document.getElementById("polaroidWindow");
-const track = document.getElementById("photoTrack");
-const nextBtn = document.getElementById("nextBtn");
-
-
-// =====================================================
-// CLONE PHOTOS FOR INFINITE LOOP
-// =====================================================
-
-const originalPhotos = [...track.children];
-
-originalPhotos.forEach(photo => {
-    const clone = photo.cloneNode(true);
-    track.appendChild(clone);
-});
-
-
-// =====================================================
-// NEXT BUTTON
-// =====================================================
-
-let currentIndex = 0;
-
-nextBtn.addEventListener("click", function () {
-
-    const photos = track.children;
-
-    const photoWidth =
-        photos[0].offsetWidth;
-
-    const gap = parseInt(
-        getComputedStyle(track).gap
-    );
-
-    const moveAmount =
-        photoWidth + gap;
-
-    currentIndex++;
-
-    windowBox.scrollTo({
-        left: currentIndex * moveAmount,
-        behavior: "smooth"
-    });
+          <!-- Calendar Options Dropdown -->
+          <div id="calendar-dropdown" class="hidden absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 bg-[#1a0204]/95 backdrop-blur-md border border-[#c99646] rounded-xl p-2 shadow-2xl z-30 flex-col gap-1.5 animate-in fade-in zoom-in-95 duration-200">
+            <a
+              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding:+Shanoob+%26+Sajla&dates=20260927T063000Z/20260927T103000Z&details=We+invite+you+to+celebrate+our+wedding+at+N+Woods+Convention+Centre,+Hospital+Jn,+Nechully.&location=N+Woods+Convention+Centre,+Hospital+Junction,+Nechully"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2.5 px-3 py-2 text-left text-xs font-montserrat text-[#fae9c4] hover:bg-[#650000]/60 rounded-lg transition-colors"
+            >
+              <svg class="w-4 h-4 text-[#f4d88f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <span>Google Calendar</span>
+            </a>
+            <button
+              id="btn-download-ics"
+              class="flex items-center gap-2.5 px-3 py-2 text-left text-xs font-montserrat text-[#fae9c4] hover:bg-[#650000]/60 rounded-lg transition-colors w-full"
+            >
+              <svg class="w-4 h-4 text-[#f4d88f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Apple / iCal (.ics)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
-    // =================================================
-    // INFINITE RESET
-    // =================================================
+    <!-- ==========================================
+         SECTION 3: TOGETHER WITH FAMILIES (COUPLE)
+         ========================================== -->
+    <section id="couple" class="relative w-full bg-[#300003] py-12 px-3 sm:px-4 flex items-center justify-center">
+      <!-- Background Decorative Gold Sparks -->
+      <div class="absolute top-10 left-5 w-2 h-2 rounded-full bg-[#f4d88f]/40 animate-ping"></div>
+      <div class="absolute bottom-20 right-8 w-2 h-2 rounded-full bg-[#f4d88f]/40 animate-ping"></div>
+      <div class="absolute inset-0 premium-sparkle opacity-60 pointer-events-none"></div>
 
-    if (currentIndex >= originalPhotos.length) {
+      <!-- Main Inner Ivory Invitation Enclosure -->
+      <div
+        id="couple-card"
+        class="relative w-full max-w-[430px] bg-[#faf2ea] rounded-[45px] sm:rounded-[55px] py-10 px-4 sm:px-6 shadow-2xl flex flex-col items-center border-2 border-[#b98e38]/60 premium-card"
+      >
+        <!-- Top Eyebrow -->
+        <div class="text-center mb-8 z-10">
+          <h4 class="font-montserrat text-xs sm:text-sm font-medium tracking-[2.5px] uppercase text-[#3b0003]">
+            TOGETHER WITH THEIR FAMILIES
+          </h4>
+        </div>
 
-        setTimeout(() => {
+        <!-- ================= GROOM SECTION ================= -->
+        <div class="relative w-full flex flex-col items-center mb-6">
+          <!-- Floral Bouquet (Left side of groom pill photo) -->
+          <div class="absolute -top-[10px] -left-10 sm:-left-20 w-36 sm:w-44 z-0 pointer-events-none transform -rotate-14 opacity-90">
+            <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+              <img src="./images/Flower02.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower02.png'">
+            </div>
+          </div>
 
-            windowBox.style.scrollBehavior = "auto";
+          <!-- Groom Pill Photo with 1px border at a distance -->
+          <div class="relative z-10 w-44 h-56 sm:w-48 sm:h-60 rounded-[88px] p-2 border border-[#3b0003]/60 bg-[#fdf5f2] shadow-md mb-2">
+            <div class="w-full h-full rounded-[80px] overflow-hidden bg-[#eee]">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+                alt="Groom - Shanoob"
+                class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
 
-            currentIndex = 0;
+          <!-- Groom Maroon Nameplate (Pill Shape) -->
+          <div class="relative w-56 sm:w-60 bg-gradient-to-b from-[#380002] to-[#200002] text-white rounded-[32px] px-4 py-3.5 text-center shadow-lg border border-[#c99646]/50 z-20">
+            <p class="font-montserrat text-[10px] font-medium tracking-[3.5px] text-[#f3d58b] uppercase mb-1">
+              — GROOM —
+            </p>
+            <h1 class="font-lavish text-4xl sm:text-[42px] leading-tight text-white mb-2">
+              Shanoob
+            </h1>
+            <p class="font-montserrat text-[8.5px] sm:text-[9px] font-normal uppercase leading-relaxed text-[#f8e8c7] tracking-wider">
+              S/O Mr. Usman K &amp; Mrs. Shahida Usman
+              <br />
+              Kizhakkeparamban House
+              <br />
+              Nechully
+            </p>
+          </div>
+        </div>
 
-            windowBox.scrollLeft = 0;
+        <!-- ================= CENTER MONOGRAM DIVIDER ================= -->
+        <div class="w-full flex items-center justify-center gap-3 my-4 z-10">
+          <span class="w-20 sm:w-28 h-[1px] bg-[#3b0003]/60"></span>
+          <div class="w-10 h-10 rounded-full bg-[#3b0003] border border-[#f4d88f] shadow-md flex items-center justify-center text-[#f4d88f] ring-2 ring-[#faf2ea] ring-offset-1 ring-offset-[#3b0003]">
+            <span class="font-lavish text-2xl leading-none">&amp;</span>
+          </div>
+          <span class="w-20 sm:w-28 h-[1px] bg-[#3b0003]/60"></span>
+        </div>
 
-            windowBox.style.scrollBehavior = "smooth";
+        <!-- ================= BRIDE SECTION ================= -->
+        <div class="relative w-full flex flex-col items-center mt-2">
+          <!-- Floral Bouquet (Right side of bride pill photo) -->
+          <div class="absolute top-20 -right-11 sm:-right-20 w-36 sm:w-44 z-0 pointer-events-none transform rotate-[90deg] opacity-90">
+            <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+              <img src="./images/Flower01.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower01.png'">
+            </div>
+          </div>
 
-        }, 450);
-    }
+          <!-- Bride Pill Photo with 1px border at a distance -->
+          <div class="relative z-10 w-44 h-56 sm:w-48 sm:h-60 rounded-[88px] p-2 border border-[#3b0003]/60 bg-[#fdf5f2] shadow-md mb-2">
+            <div class="w-full h-full rounded-[80px] overflow-hidden bg-[#eee]">
+              <img
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                alt="Bride - Sajla"
+                class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
 
-});
+          <!-- Bride Maroon Nameplate (Pill Shape) -->
+          <div class="relative w-56 sm:w-60 bg-gradient-to-b from-[#380002] to-[#200002] text-white rounded-[32px] px-4 py-3.5 text-center shadow-lg border border-[#c99646]/50 z-20">
+            <p class="font-montserrat text-[10px] font-medium tracking-[3.5px] text-[#f3d58b] uppercase mb-1">
+              — BRIDE —
+            </p>
+            <h1 class="font-lavish text-4xl sm:text-[42px] leading-tight text-white mb-2">
+              Sajla
+            </h1>
+            <p class="font-montserrat text-[8.5px] sm:text-[9px] font-normal uppercase leading-relaxed text-[#f8e8c7] tracking-wider">
+              D/O Mr. Mansoor Ahamed K &amp; Mrs. Shakeela Mansoor
+              <br />
+              Kayalmadathil House, Othukkungal
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
 
+    <!-- ==========================================
+         SECTION 4: SAVE THE DATE / VENUE
+         ========================================== -->
+    <section id="location" class="relative w-full flex flex-col items-center justify-center py-12 px-4 bg-[#f7eee4]">
+      <!-- Top Left Floral Bouquet (on the pill card's top-left corner) -->
+      <div class="absolute top-24 sm:top-28 -left-8 sm:-left-10 w-44 sm:w-52 z-20 pointer-events-none transform -rotate-12 opacity-95">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower02.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower02.png'">
+        </div>
+      </div>
 
-        function scrollGallery(amount) {
-            document.getElementById('polaroidWindow').scrollBy({
-                left: amount,
-                behavior: 'smooth'
-            });
-        }
+      <!-- Bottom Right Floral Bouquet on Backside -->
+      <div class="absolute -bottom-8 -right-10 sm:-right-12 w-60 sm:w-72 z-0 pointer-events-none transform rotate-12 opacity-90">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower01.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower01.png'">
+        </div>
+      </div>
 
-</script>
+      <!-- Section Script Title -->
+      <h1 class="font-lavish text-5xl sm:text-6xl text-[#3b0003] font-normal leading-tight text-center mb-6 z-10">
+        Save The Date
+      </h1>
+
+      <!-- Main Pill Save The Date Card -->
+      <div
+        id="save-card"
+        class="relative w-full max-w-[400px] sm:max-w-[430px] bg-gradient-to-b from-[#3b0003] via-[#300003] to-[#200002] text-[#f4d88f] rounded-[190px] sm:rounded-[220px] pt-14 pb-0 shadow-[0_25px_60px_rgba(0,0,0,0.55)] border-2 border-[#c99646] flex flex-col items-center text-center overflow-hidden z-10 premium-card"
+      >
+        <!-- Inner Text & Information Container -->
+        <div class="w-full px-6 sm:px-8 flex flex-col items-center text-center z-10">
+          <!-- Calendar Icon -->
+          <div class="mb-2 text-white">
+            <svg class="w-8 h-8 text-[#fff6de]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path></svg>
+          </div>
+
+          <!-- Month -->
+          <p class="font-montserrat text-xl sm:text-2xl font-bold tracking-[4px] text-[#f4d47e] mb-2.5">
+            SEPTEMBER
+          </p>
+
+          <!-- Date Row: SUNDAY | 27 (Flip) | 2026 -->
+          <div class="w-full flex items-center justify-center gap-3 sm:gap-4 my-1.5">
+            <div class="w-24 sm:w-28 py-1.5 border-y border-[#bd9852] text-[#f4d47e] font-montserrat text-xs sm:text-sm font-semibold tracking-widest uppercase text-center whitespace-nowrap">
+              SUNDAY
+            </div>
+
+            <!-- Flip Number Display -->
+            <div class="w-20 h-16 flex items-center justify-center perspective-[600px]">
+              <span id="flip-day-display" class="font-montserrat text-5xl sm:text-6xl font-bold text-white leading-none">
+                27
+              </span>
+            </div>
+
+            <div class="w-24 sm:w-28 py-1.5 border-y border-[#bd9852] text-[#f4d47e] font-montserrat text-xs sm:text-sm font-semibold tracking-widest text-center whitespace-nowrap">
+              2026
+            </div>
+          </div>
+
+          <!-- Time -->
+          <div class="font-montserrat text-xs sm:text-sm tracking-widest uppercase text-[#f4d47e] mt-1.5 mb-3 font-semibold">
+            AT <br />
+            12:00 PM
+          </div>
+
+          <!-- Location Divider Badge -->
+          <div class="w-full flex items-center justify-center gap-3 my-2">
+            <span class="w-16 sm:w-20 h-[1px] bg-[#bd9852]"></span>
+            <div class="w-8 h-8 rounded-full bg-[#f8dfa0] border border-[#a87530] flex items-center justify-center text-[#3b0003] shadow-md ring-2 ring-[#3b0003]">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <span class="w-16 sm:w-20 h-[1px] bg-[#bd9852]"></span>
+          </div>
+
+          <!-- Venue Icon -->
+          <div class="mt-1 text-white">
+            <svg class="w-8 h-8 text-[#fff6de]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01"></path></svg>
+          </div>
+
+          <!-- Venue Title & Subtitle -->
+          <h2 class="font-montserrat text-sm sm:text-base font-bold uppercase tracking-wider text-[#f6d987] mt-1 max-w-[320px]">
+            N Woods Convention Centre
+          </h2>
+          <p class="font-montserrat text-[11px] sm:text-xs text-[#f4d47e]/90 tracking-wide mb-5">
+            Hospital Junction, Nechully
+          </p>
+        </div>
+
+        <!-- Full-bleed Venue Bottom Dome Photo -->
+        <div class="relative w-full h-56 sm:h-64 rounded-b-[188px] sm:rounded-b-[218px] overflow-hidden border-t border-[#c99646] bg-[#1c0002] mt-auto">
+          <img
+            src="./images/nwoods.jpeg"
+            alt="N Woods Convention Centre"
+            class="w-full h-full object-cover object-center scale-100 hover:scale-105 transition-transform duration-700"
+            onerror="this.src='/images/nwoods.jpeg'"
+          />
+
+          <!-- Subtle Bottom Shadow for Button Contrast -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+
+          <!-- Google Map Link Pill Button -->
+          <a
+            id="btn-google-map"
+            href="https://maps.google.com/?q=N+Woods+Convention+Centre+Hospital+Junction+Nechully"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#3b0003] to-[#200002] text-white text-xs font-montserrat font-semibold tracking-wider rounded-full border border-[#f0d18a] shadow-xl hover:scale-105 active:scale-95 transition-all z-20 whitespace-nowrap"
+          >
+            <svg class="w-3.5 h-3.5 text-[#f4d88f]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+            <span>Google Map</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 5: MOMENTS GALLERY
+         ========================================== -->
+    <section id="gallery" class="relative w-full flex flex-col items-center justify-center py-12 px-3 sm:px-4 bg-[#f7eee4]">
+      <!-- Top Right Floral Bouquet Background -->
+      <div class="absolute -top-14 -left-10 sm:-right-12 w-60 sm:w-72 z-0 pointer-events-none transform rotate-[25deg] opacity-50">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower02.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower02.png'">
+        </div>
+      </div>
+
+      <!-- Subtle Delicate Floral Blossom at Bottom Left Corner -->
+      <div class="absolute -bottom-8 -left-8 sm:-left-10 w-40 sm:w-48 z-0 pointer-events-none transform -rotate-45 opacity-85">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower03.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower03.png'">
+        </div>
+      </div>
+
+      <!-- Main Burgundy Arch Card -->
+      <div
+        id="gallery-card"
+        class="relative w-full max-w-[420px] bg-gradient-to-b from-[#3b0003] via-[#300003] to-[#200002] rounded-t-[85px] rounded-b-[50px] pt-10 pb-12 px-4 sm:px-5 shadow-[0_25px_60px_rgba(0,0,0,0.55)] border-2 border-[#c99646] flex flex-col items-center text-center overflow-hidden z-10 premium-card"
+      >
+        <!-- Heading Inside Card -->
+        <div class="mb-6 z-10">
+          <p class="font-cormorant text-2xl sm:text-3xl font-medium leading-none text-white tracking-widest">
+            A FEW
+          </p>
+          <span class="font-shadows text-5xl sm:text-6xl text-[#f2cf80] block -mt-1 drop-shadow">
+            Moments
+          </span>
+          <p class="font-montserrat text-[10px] sm:text-[11px] text-white/90 leading-relaxed max-w-[280px] mx-auto mt-3 font-normal">
+            Little glimpses from our journey together,
+            <br />
+            Before the big day.
+          </p>
+        </div>
+
+        <!-- 3-Column Static Clean Photo Grid -->
+        <div class="w-full grid grid-cols-3 gap-2 sm:gap-2.5 z-10">
+          <div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#180002] border border-[#c99646]/80 shadow-md">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Special Moment 1" class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#180002] border border-[#c99646]/80 shadow-md">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Special Moment 2" class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#180002] border border-[#c99646]/80 shadow-md">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Special Moment 3" class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#180002] border border-[#c99646]/80 shadow-md">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" alt="Special Moment 4" class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#180002] border border-[#c99646]/80 shadow-md">
+            <img src="https://images.unsplash.com/photo-1583939411023-30b7ec69eb00?auto=format&fit=crop&w=600&q=80" alt="Special Moment 5" class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="relative aspect-[3/4] rounded-xl overflow-hidden bg-[#180002] border border-[#c99646]/80 shadow-md">
+            <img src="https://images.unsplash.com/photo-1525258628335-af51ceb1b4b9?auto=format&fit=crop&w=600&q=80" alt="Special Moment 6" class="w-full h-full object-cover object-center" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         SECTION 6: WITH LOVE & GRATITUDE / THANK YOU
+         ========================================== -->
+    <section id="welcome" class="relative w-full flex flex-col items-center justify-between pt-12 pb-0 px-4 bg-[#f7eee4]">
+      <!-- Top Left Floral Bouquet Background -->
+      <div class="absolute top-20 -left-14 w-48 sm:w-56 z-0 pointer-events-none transform -rotate-12 opacity-30">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower03.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower03.png'">
+        </div>
+      </div>
+
+      <!-- Bottom Right Floral Bouquet Background -->
+      <div class="absolute -top-2 -right-14 w-36 sm:w-44 z-0 pointer-events-none transform rotate-12 opacity-80">
+        <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+          <img src="./images/Flower01.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower01.png'">
+        </div>
+      </div>
+
+      <!-- Main Welcome Content -->
+      <div class="relative z-10 w-full max-w-[430px] flex flex-col items-center text-center mb-8">
+        <!-- Eyebrow -->
+        <p class="font-montserrat text-xs sm:text-sm font-semibold tracking-[3.5px] uppercase text-[#3b0003] mb-6">
+          WITH LOVE &amp; GRATITUDE
+        </p>
+
+        <!-- Vertical Names Calligraphy -->
+        <div class="flex flex-col items-center mb-6">
+          <span class="font-lavish text-6xl sm:text-7xl text-[#3b0003] leading-none">
+            Shanoob
+          </span>
+          <span class="font-lavish text-4xl sm:text-5xl text-[#520206] my-1 leading-none">
+            &amp;
+          </span>
+          <span class="font-lavish text-6xl sm:text-7xl text-[#3b0003] leading-none">
+            Sajla
+          </span>
+        </div>
+
+        <!-- Welcome Message -->
+        <p class="font-montserrat text-xs sm:text-[13px] text-[#3b0003]/90 leading-relaxed max-w-[360px] px-3 mb-5 font-normal">
+          We are delighted to welcome you to our special moments. Your presence, love, and blessings
+          will make our celebration even more meaningful.
+        </p>
+
+        <!-- Date -->
+        <p class="font-montserrat text-base sm:text-lg font-semibold tracking-[2px] text-[#3b0003]">
+          27 . 09 . 2026
+        </p>
+      </div>
+
+      <!-- Thank You Wrapper & Burgundy Arch Card -->
+      <div class="relative w-full max-w-[430px] z-10 flex flex-col items-center mt-4">
+        <!-- Flower background behind Thank You card top right -->
+        <div class="absolute -top-16 -right-14 sm:-right-16 w-48 sm:w-56 -z-10 pointer-events-none transform rotate-90 opacity-85">
+          <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+            <img src="./images/Flower02.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-2" onerror="this.src='/images/Flower02.png'">
+          </div>
+        </div>
+        <!-- Flower cluster at bottom left of Thank You card -->
+        <div class="absolute bottom-16 -left-16 sm:-left-20 w-36 sm:w-44 -z-10 pointer-events-none transform -rotate-12 opacity-80">
+          <div class="pointer-events-none select-none overflow-visible w-full h-auto floral-glow" aria-hidden="true">
+            <img src="./images/Flower01.png" alt="Floral ornament" class="w-full h-full object-contain animate-floral-breeze-1" onerror="this.src='/images/Flower01.png'">
+          </div>
+        </div>
+
+        <!-- Burgundy Thank You Card -->
+        <div
+          id="thankyou-card"
+          class="relative w-full h-64 sm:h-72 bg-gradient-to-b from-[#3b0003] via-[#300003] to-[#200002] rounded-t-[110px] sm:rounded-t-[130px] rounded-b-none border-2 border-b-0 border-[#c99646] pt-12 pb-24 flex flex-col items-center shadow-[0_25px_60px_rgba(0,0,0,0.55)] overflow-visible premium-card"
+        >
+          <!-- Inner Gold Arch Line -->
+          <div class="absolute inset-2 bottom-0 rounded-t-[102px] sm:rounded-t-[122px] rounded-b-none border border-[#f2cf80]/40 border-b-0 pointer-events-none"></div>
+
+          <!-- Thank You Calligraphy -->
+          <h2 class="font-shadows text-6xl sm:text-7xl md:text-8xl text-[#f2cf80] font-normal leading-none drop-shadow-md z-10 animate-gold-glow">
+            Thank You
+          </h2>
+
+          <p class="font-montserrat text-[10px] sm:text-xs text-[#fae9c4]/80 tracking-[3px] uppercase mt-4 z-10">
+            FOR BEING PART OF OUR STORY
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive JavaScript Engine -->
+  <script src="script.js"></script>
 </body>
 </html>
