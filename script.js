@@ -4,157 +4,84 @@
  * Calendar (.ics/Google), Photo Gallery Lightbox, and RSVP/Share Modals.
  */
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
-
   // -------------------------------------------------------------
-  // Wedding Background Music
+  // 1. Web Audio API Soft Wedding Melody Synthesizer
   // -------------------------------------------------------------
-
   let isAudioPlaying = false;
+  let audioCtx = null;
+  let isCancelled = false;
 
   const btnMusicToggle = document.getElementById('btn-music-toggle');
   const musicPulseRing = document.getElementById('music-pulse-ring');
   const musicIconPlaying = document.getElementById('music-icon-playing');
   const musicIconMuted = document.getElementById('music-icon-muted');
 
-  // -------------------------------------------------------------
-  // YOUR AUDIO LINK
-  // -------------------------------------------------------------
+  const notes = [220.0, 277.18, 329.63, 415.3, 440.0, 493.88, 554.37, 659.25, 739.99];
+  const melodySequence = [0, 2, 4, 6, 7, 6, 4, 2, 1, 3, 5, 7, 8, 7, 5, 3, 0, 4, 6, 8, 7, 4, 2, 1];
+  let currentStep = 0;
 
-  const audio = new Audio(
-    'https://www.instagram.com/reels/audio/901793538110622/'
-  );
+  function playWeddingMelody() {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContextClass();
+      isCancelled = false;
 
-  audio.loop = true;
-  audio.volume = 0.5;
+      function scheduleNextNote() {
+        if (isCancelled || !audioCtx || audioCtx.state === 'closed') return;
 
-  // -------------------------------------------------------------
-  // Update Music Button UI
-  // -------------------------------------------------------------
+        const noteIndex = melodySequence[currentStep % melodySequence.length];
+        const freq = notes[noteIndex];
 
-  function updateMusicUI() {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
 
-    if (isAudioPlaying) {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-      if (musicPulseRing) {
-        musicPulseRing.style.display = 'block';
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.12, audioCtx.currentTime + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.6);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime);
+        osc.stop(audioCtx.currentTime + 1.8);
+
+        currentStep++;
+        setTimeout(scheduleNextNote, 520);
       }
 
-      if (musicIconPlaying) {
-        musicIconPlaying.style.display = 'block';
-      }
-
-      if (musicIconMuted) {
-        musicIconMuted.style.display = 'none';
-      }
-
-    } else {
-
-      if (musicPulseRing) {
-        musicPulseRing.style.display = 'none';
-      }
-
-      if (musicIconPlaying) {
-        musicIconPlaying.style.display = 'none';
-      }
-
-      if (musicIconMuted) {
-        musicIconMuted.style.display = 'block';
-      }
+      scheduleNextNote();
+    } catch (e) {
+      console.warn('Audio Context interaction pending');
     }
   }
-
-  // -------------------------------------------------------------
-  // Play Music
-  // -------------------------------------------------------------
-
-  function playMusic() {
-
-    audio.play()
-      .then(() => {
-        isAudioPlaying = true;
-        updateMusicUI();
-      })
-      .catch((error) => {
-        console.log('Autoplay blocked. Waiting for user interaction.');
-        isAudioPlaying = false;
-        updateMusicUI();
-      });
-  }
-
-  // -------------------------------------------------------------
-  // Stop Music
-  // -------------------------------------------------------------
-
-  function stopMusic() {
-
-    audio.pause();
-    audio.currentTime = 0;
-
-    isAudioPlaying = false;
-
-    updateMusicUI();
-  }
-
-  // -------------------------------------------------------------
-  // Toggle Music
-  // -------------------------------------------------------------
 
   function toggleMusic() {
-
     if (isAudioPlaying) {
-      stopMusic();
+      isCancelled = true;
+      if (audioCtx) {
+        audioCtx.close().catch(() => {});
+        audioCtx = null;
+      }
+      isAudioPlaying = false;
+      if (musicPulseRing) musicPulseRing.style.display = 'none';
+      if (musicIconPlaying) musicIconPlaying.style.display = 'none';
+      if (musicIconMuted) musicIconMuted.style.display = 'block';
     } else {
-      playMusic();
+      isAudioPlaying = true;
+      playWeddingMelody();
+      if (musicPulseRing) musicPulseRing.style.display = 'block';
+      if (musicIconPlaying) musicIconPlaying.style.display = 'block';
+      if (musicIconMuted) musicIconMuted.style.display = 'none';
     }
   }
-
-  // -------------------------------------------------------------
-  // Music Button
-  // -------------------------------------------------------------
 
   if (btnMusicToggle) {
     btnMusicToggle.addEventListener('click', toggleMusic);
   }
-
-  // -------------------------------------------------------------
-  // DEFAULT MUSIC ON
-  // -------------------------------------------------------------
-
-  playMusic();
-
-  // -------------------------------------------------------------
-  // AUTOPLAY FALLBACK
-  // Browser may block autoplay with sound
-  // -------------------------------------------------------------
-
-  const startMusicAfterInteraction = () => {
-
-    if (!isAudioPlaying) {
-      playMusic();
-    }
-
-  };
-
-  document.addEventListener(
-    'pointerdown',
-    startMusicAfterInteraction,
-    { once: true }
-  );
-
-  document.addEventListener(
-    'keydown',
-    startMusicAfterInteraction,
-    { once: true }
-  );
-
-});
-
-
-
-
 
   // -------------------------------------------------------------
   // 2. Floating Circular Navigation Speed-Dial Menu
@@ -399,3 +326,4 @@ END:VCALENDAR`;
       }
     });
   }
+});
