@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wedding Background Music
   // -------------------------------------------------------------
 
-  let isAudioPlaying = false;
+  let isAudioPlaying = true;
   let userStoppedMusic = false;
 
   const btnMusicToggle = document.getElementById('btn-music-toggle');
