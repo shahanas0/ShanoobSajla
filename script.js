@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wedding Background Music
   // -------------------------------------------------------------
 
-  let isAudioPlaying = true;
+  let isAudioPlaying = false;
+  let userStoppedMusic = false;
 
   const btnMusicToggle = document.getElementById('btn-music-toggle');
   const musicPulseRing = document.getElementById('music-pulse-ring');
@@ -75,18 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
       .then(() => {
 
         isAudioPlaying = true;
+        userStoppedMusic = false;
+
         updateMusicUI();
+
+        // Music successfully started,
+        // so interaction fallback is no longer needed.
+        removeInteractionListeners();
 
         console.log('Wedding music started');
 
       })
       .catch(() => {
 
-        // Browser blocked autoplay
         isAudioPlaying = false;
         updateMusicUI();
 
-        console.log('Autoplay blocked. Waiting for user interaction.');
+        console.log(
+          'Autoplay blocked. Waiting for user interaction.'
+        );
       });
   }
 
@@ -101,7 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     isAudioPlaying = false;
 
+    // IMPORTANT:
+    // Remember that the USER intentionally stopped it.
+    userStoppedMusic = true;
+
     updateMusicUI();
+
+    console.log('Wedding music stopped');
   }
 
   // -------------------------------------------------------------
@@ -111,9 +125,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function toggleMusic() {
 
     if (isAudioPlaying) {
+
+      // User wants to stop music
       stopMusic();
+
     } else {
+
+      // User wants to start music again
+      userStoppedMusic = false;
       playMusic();
+
     }
   }
 
@@ -122,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------
 
   if (btnMusicToggle) {
+
     btnMusicToggle.addEventListener('click', (event) => {
 
       event.stopPropagation();
@@ -132,25 +154,51 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // TRY AUTOPLAY
+  // REMOVE AUTOPLAY FALLBACK LISTENERS
   // -------------------------------------------------------------
 
-  playMusic();
+  function removeInteractionListeners() {
+
+    document.removeEventListener(
+      'pointerdown',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
+      'keydown',
+      startMusicAfterInteraction
+    );
+  }
 
   // -------------------------------------------------------------
   // START MUSIC AFTER USER INTERACTION
   // -------------------------------------------------------------
 
-  function startMusicAfterInteraction() {
+  function startMusicAfterInteraction(event) {
+
+    // Don't interfere with the music button click.
+    if (
+      btnMusicToggle &&
+      btnMusicToggle.contains(event.target)
+    ) {
+      return;
+    }
+
+    // IMPORTANT:
+    // Don't restart music after the user intentionally stopped it.
+    if (userStoppedMusic) {
+      removeInteractionListeners();
+      return;
+    }
 
     if (!isAudioPlaying) {
       playMusic();
     }
-
-    // Remove listeners after first interaction
-    document.removeEventListener('pointerdown', startMusicAfterInteraction);
-    document.removeEventListener('keydown', startMusicAfterInteraction);
   }
+
+  // -------------------------------------------------------------
+  // AUTOPLAY FALLBACK
+  // -------------------------------------------------------------
 
   document.addEventListener(
     'pointerdown',
@@ -163,13 +211,18 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   // -------------------------------------------------------------
+  // DEFAULT MUSIC ON
+  // -------------------------------------------------------------
+
+  playMusic();
+
+  // -------------------------------------------------------------
   // INITIAL UI
   // -------------------------------------------------------------
 
   updateMusicUI();
 
 });
-
 
 
   // -------------------------------------------------------------
