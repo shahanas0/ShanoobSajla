@@ -75,10 +75,42 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
+  // REMOVE AUTOPLAY FALLBACK LISTENERS
+  // -------------------------------------------------------------
+
+  function removeInteractionListeners() {
+
+    document.removeEventListener(
+      'pointerdown',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
+      'keydown',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
+      'wheel',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
+      'touchstart',
+      startMusicAfterInteraction
+    );
+  }
+
+  // -------------------------------------------------------------
   // PLAY MUSIC
   // -------------------------------------------------------------
 
   function playMusic() {
+
+    // Don't try to play if the user has explicitly stopped it
+    if (userStoppedMusic) {
+      return;
+    }
 
     audio.play()
       .then(() => {
@@ -99,8 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateMusicUI();
 
-        console.log('Autoplay blocked. Waiting for user interaction.');
-
+        console.log(
+          'Autoplay blocked. Waiting for user interaction.'
+        );
       });
   }
 
@@ -117,6 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
     userStoppedMusic = true;
 
     updateMusicUI();
+
+    // Remove all automatic-start listeners
+    removeInteractionListeners();
 
     console.log('Wedding music stopped');
   }
@@ -135,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       userStoppedMusic = false;
       playMusic();
-
     }
   }
 
@@ -155,29 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // -------------------------------------------------------------
-  // REMOVE AUTOPLAY FALLBACK LISTENERS
-  // -------------------------------------------------------------
-
-  function removeInteractionListeners() {
-
-    document.removeEventListener(
-      'pointerdown',
-      startMusicAfterInteraction
-    );
-
-    document.removeEventListener(
-      'keydown',
-      startMusicAfterInteraction
-    );
-  }
-
-  // -------------------------------------------------------------
   // START MUSIC AFTER USER INTERACTION
   // -------------------------------------------------------------
 
   function startMusicAfterInteraction(event) {
 
-    // Don't interfere with music button
+    // Don't interfere with the music button
     if (
       btnMusicToggle &&
       btnMusicToggle.contains(event.target)
@@ -185,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Don't restart if user stopped music
+    // Don't restart if user manually stopped music
     if (userStoppedMusic) {
 
       removeInteractionListeners();
@@ -193,13 +211,24 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Start music if it is not already playing
     if (!isAudioPlaying) {
+
       playMusic();
+
     }
   }
 
   // -------------------------------------------------------------
   // AUTOPLAY FALLBACK
+  // -------------------------------------------------------------
+  // Chrome may block autoplay when the page first loads.
+  //
+  // If blocked, music will start after the visitor:
+  // - clicks/taps
+  // - presses a key
+  // - scrolls with mouse wheel
+  // - starts touching/swiping on mobile
   // -------------------------------------------------------------
 
   document.addEventListener(
@@ -212,6 +241,18 @@ document.addEventListener('DOMContentLoaded', () => {
     startMusicAfterInteraction
   );
 
+  document.addEventListener(
+    'wheel',
+    startMusicAfterInteraction,
+    { passive: true }
+  );
+
+  document.addEventListener(
+    'touchstart',
+    startMusicAfterInteraction,
+    { passive: true }
+  );
+
   // -------------------------------------------------------------
   // MUSIC PERMISSION - OK
   // -------------------------------------------------------------
@@ -222,11 +263,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
       event.stopPropagation();
 
+      userStoppedMusic = false;
+
       audio.play()
         .then(() => {
 
           isAudioPlaying = true;
-          userStoppedMusic = false;
 
           updateMusicUI();
 
@@ -241,7 +283,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch((error) => {
 
-          console.log('Music could not start:', error);
+          console.log(
+            'Music could not start:',
+            error
+          );
 
         });
 
@@ -259,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.stopPropagation();
 
       audio.pause();
+      audio.currentTime = 0;
 
       isAudioPlaying = false;
       userStoppedMusic = true;
@@ -276,6 +322,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // -------------------------------------------------------------
   // DEFAULT MUSIC ON
+  // -------------------------------------------------------------
+  // Try to start immediately.
+  // Chrome may block this.
+  // If blocked, the interaction listeners above
+  // will start it when the visitor interacts.
   // -------------------------------------------------------------
 
   playMusic();

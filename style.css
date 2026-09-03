@@ -281,7 +281,7 @@ body {
     background: rgba(0, 0, 0, 0.7);
 }
 
-.music-box {
+/* .music-box {
     width: 320px;
     padding: 30px;
     text-align: center;
@@ -302,4 +302,4 @@ body {
 .music-box button:hover{
   background-color: rgb(66, 9, 9);
   color: white;
-}
+} */
