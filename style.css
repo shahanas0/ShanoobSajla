@@ -267,3 +267,39 @@ body {
 [class*="drop-shadow"] {
   filter: none !important;
 }
+
+
+.music-permission {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.music-box {
+    width: 320px;
+    padding: 30px;
+    text-align: center;
+
+    background: #fff;
+    border-radius: 20px;
+}
+
+.music-box button {
+    padding: 10px 25px;
+    margin: 10px 5px;
+
+    border: solid 1px rgb(68, 4, 4);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.music-box button:hover{
+  background-color: rgb(66, 9, 9);
+  color: white;
+}

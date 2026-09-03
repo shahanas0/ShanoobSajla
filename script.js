@@ -12,13 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wedding Background Music
   // -------------------------------------------------------------
 
-  let isAudioPlaying = true;
+  let isAudioPlaying = false;
   let userStoppedMusic = false;
 
   const btnMusicToggle = document.getElementById('btn-music-toggle');
   const musicPulseRing = document.getElementById('music-pulse-ring');
   const musicIconPlaying = document.getElementById('music-icon-playing');
   const musicIconMuted = document.getElementById('music-icon-muted');
+
+  // -------------------------------------------------------------
+  // MUSIC PERMISSION POPUP
+  // -------------------------------------------------------------
+
+  const musicPermission = document.getElementById('music-permission');
+  const allowMusic = document.getElementById('allow-music');
+  const noMusic = document.getElementById('no-music');
 
   // -------------------------------------------------------------
   // AUDIO FILE
@@ -80,8 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateMusicUI();
 
-        // Music successfully started,
-        // so interaction fallback is no longer needed.
         removeInteractionListeners();
 
         console.log('Wedding music started');
@@ -90,11 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(() => {
 
         isAudioPlaying = false;
+
         updateMusicUI();
 
-        console.log(
-          'Autoplay blocked. Waiting for user interaction.'
-        );
+        console.log('Autoplay blocked. Waiting for user interaction.');
+
       });
   }
 
@@ -108,9 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.currentTime = 0;
 
     isAudioPlaying = false;
-
-    // IMPORTANT:
-    // Remember that the USER intentionally stopped it.
     userStoppedMusic = true;
 
     updateMusicUI();
@@ -126,12 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isAudioPlaying) {
 
-      // User wants to stop music
       stopMusic();
 
     } else {
 
-      // User wants to start music again
       userStoppedMusic = false;
       playMusic();
 
@@ -176,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startMusicAfterInteraction(event) {
 
-    // Don't interfere with the music button click.
+    // Don't interfere with music button
     if (
       btnMusicToggle &&
       btnMusicToggle.contains(event.target)
@@ -184,10 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // IMPORTANT:
-    // Don't restart music after the user intentionally stopped it.
+    // Don't restart if user stopped music
     if (userStoppedMusic) {
+
       removeInteractionListeners();
+
       return;
     }
 
@@ -211,6 +213,68 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   // -------------------------------------------------------------
+  // MUSIC PERMISSION - OK
+  // -------------------------------------------------------------
+
+  if (allowMusic) {
+
+    allowMusic.addEventListener('click', (event) => {
+
+      event.stopPropagation();
+
+      audio.play()
+        .then(() => {
+
+          isAudioPlaying = true;
+          userStoppedMusic = false;
+
+          updateMusicUI();
+
+          if (musicPermission) {
+            musicPermission.style.display = 'none';
+          }
+
+          removeInteractionListeners();
+
+          console.log('Wedding music started');
+
+        })
+        .catch((error) => {
+
+          console.log('Music could not start:', error);
+
+        });
+
+    });
+  }
+
+  // -------------------------------------------------------------
+  // MUSIC PERMISSION - NO
+  // -------------------------------------------------------------
+
+  if (noMusic) {
+
+    noMusic.addEventListener('click', (event) => {
+
+      event.stopPropagation();
+
+      audio.pause();
+
+      isAudioPlaying = false;
+      userStoppedMusic = true;
+
+      updateMusicUI();
+
+      if (musicPermission) {
+        musicPermission.style.display = 'none';
+      }
+
+      removeInteractionListeners();
+
+    });
+  }
+
+  // -------------------------------------------------------------
   // DEFAULT MUSIC ON
   // -------------------------------------------------------------
 
@@ -223,6 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateMusicUI();
 
 });
+
 
 
   // -------------------------------------------------------------
