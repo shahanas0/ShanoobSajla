@@ -6,6 +6,7 @@
 
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // -------------------------------------------------------------
@@ -86,6 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     document.removeEventListener(
+      'pointerup',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
       'keydown',
       startMusicAfterInteraction
     );
@@ -99,6 +105,21 @@ document.addEventListener('DOMContentLoaded', () => {
       'touchstart',
       startMusicAfterInteraction
     );
+
+    document.removeEventListener(
+      'touchmove',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
+      'touchend',
+      startMusicAfterInteraction
+    );
+
+    document.removeEventListener(
+      'scroll',
+      startMusicAfterInteraction
+    );
   }
 
   // -------------------------------------------------------------
@@ -107,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function playMusic() {
 
-    // Don't try to play if the user has explicitly stopped it
+    // Don't play if the user explicitly stopped music
     if (userStoppedMusic) {
       return;
     }
@@ -120,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateMusicUI();
 
+        // Music successfully started,
+        // so fallback listeners are no longer needed.
         removeInteractionListeners();
 
         console.log('Wedding music started');
@@ -151,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateMusicUI();
 
-    // Remove all automatic-start listeners
+    // Prevent scrolling/touching from restarting music
     removeInteractionListeners();
 
     console.log('Wedding music stopped');
@@ -171,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       userStoppedMusic = false;
       playMusic();
+
     }
   }
 
@@ -211,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Start music if it is not already playing
+    // Start music if it isn't already playing
     if (!isAudioPlaying) {
 
       playMusic();
@@ -222,33 +246,73 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------
   // AUTOPLAY FALLBACK
   // -------------------------------------------------------------
-  // Chrome may block autoplay when the page first loads.
   //
-  // If blocked, music will start after the visitor:
-  // - clicks/taps
+  // If Chrome blocks autoplay when the page loads,
+  // music will attempt to start when the visitor:
+  //
+  // Desktop:
+  // - clicks
   // - presses a key
-  // - scrolls with mouse wheel
-  // - starts touching/swiping on mobile
+  // - uses mouse wheel
+  //
+  // Mobile:
+  // - taps
+  // - starts a swipe
+  // - moves finger while scrolling
+  // - finishes a touch gesture
+  // - page scrolls
+  //
   // -------------------------------------------------------------
 
+  // Click / tap / pointer interaction
   document.addEventListener(
     'pointerdown',
     startMusicAfterInteraction
   );
 
+  // Pointer release
+  document.addEventListener(
+    'pointerup',
+    startMusicAfterInteraction
+  );
+
+  // Keyboard
   document.addEventListener(
     'keydown',
     startMusicAfterInteraction
   );
 
+  // Desktop mouse-wheel scrolling
   document.addEventListener(
     'wheel',
     startMusicAfterInteraction,
     { passive: true }
   );
 
+  // Mobile touch starts
   document.addEventListener(
     'touchstart',
+    startMusicAfterInteraction,
+    { passive: true }
+  );
+
+  // Mobile finger movement / swipe
+  document.addEventListener(
+    'touchmove',
+    startMusicAfterInteraction,
+    { passive: true }
+  );
+
+  // Mobile touch ends
+  document.addEventListener(
+    'touchend',
+    startMusicAfterInteraction,
+    { passive: true }
+  );
+
+  // Actual page scroll
+  document.addEventListener(
+    'scroll',
     startMusicAfterInteraction,
     { passive: true }
   );
@@ -289,7 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
           );
 
         });
-
     });
   }
 
@@ -315,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
         musicPermission.style.display = 'none';
       }
 
+      // Make sure scrolling cannot restart music
       removeInteractionListeners();
 
     });
@@ -323,10 +387,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // -------------------------------------------------------------
   // DEFAULT MUSIC ON
   // -------------------------------------------------------------
-  // Try to start immediately.
-  // Chrome may block this.
-  // If blocked, the interaction listeners above
-  // will start it when the visitor interacts.
+  //
+  // First attempt autoplay immediately.
+  //
+  // If Chrome allows it:
+  //     Music starts immediately.
+  //
+  // If Chrome blocks it:
+  //     The interaction/scroll listeners above
+  //     will try again.
+  //
   // -------------------------------------------------------------
 
   playMusic();
@@ -338,6 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateMusicUI();
 
 });
+
 
 
 
